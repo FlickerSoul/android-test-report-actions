@@ -1,0 +1,5 @@
+name: 'Android Tests Reporter'
+description: 'Reports Android Tests Results to GitHub Actions Summary'
+runs:
+  using: 'node20'
+  main: 'index.js'
