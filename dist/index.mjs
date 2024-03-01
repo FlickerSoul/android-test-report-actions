@@ -33329,13 +33329,13 @@ const parser = new xml2js__WEBPACK_IMPORTED_MODULE_2__.Parser();
 function createSummaryTable() {
   return [
     [
-      { data: "💾Name", header: true },
-      { data: "📋Tests", header: true },
-      { data: "↩️Skipped", header: true },
-      { data: "‼️Failures", header: true },
-      { data: "❌Errors", header: true },
-      { data: "⌚Timestamp", header: true },
-      { data: "⌛Time (s)", header: true },
+      { data: "💾 Name", header: true },
+      { data: "📋 Tests", header: true },
+      { data: "↩️ Skipped", header: true },
+      { data: "‼️ Failures", header: true },
+      { data: "❌ Errors", header: true },
+      { data: "⌚ Timestamp", header: true },
+      { data: "⌛ Time (s)", header: true },
     ],
   ];
 }
@@ -33347,11 +33347,11 @@ function createSummaryTable() {
 function createFailureTable() {
   return [
     [
-      { data: "💾Test Name", header: true },
-      { data: "💬Failure Message", header: true },
-      { data: "⁉️Failure Type", header: true },
-      { data: "⌛️Time (s)", header: true },
-      { data: "🤔Stack Trace", header: true },
+      { data: "💾 Test Name", header: true },
+      { data: "💬 Failure Message", header: true },
+      { data: "⁉️ Failure Type", header: true },
+      { data: "⌛️ Time (s)", header: true },
+      { data: "🤔 Stack Trace", header: true },
     ],
   ];
 }
