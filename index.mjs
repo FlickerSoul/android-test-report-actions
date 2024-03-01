@@ -7,7 +7,7 @@ const parser = new xml2js.Parser();
 
 /** @typedef {import('@actions/core/lib/summary').SummaryTableRow} TableRow*/
 /** @typedef {TableRow[]} Table*/
-/** @typedef {name: string, tests: string, skipped: string, failures: string, errors: string, timestamp: string, time: string} SummaryData */
+/** @typedef {name: string, tests: number, skipped: number, failures: number, errors: number, timestamp: string, time: string} SummaryData */
 /** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
 /** @typedef {name: 'Total', tests: number, skipped: number, failures: number, errors: number, timestamp: 'N/A', time: number} SummaryTotal*/
 
@@ -46,6 +46,21 @@ function createFailureTable() {
 }
 
 /**
+ * Make an anchor ID from input string
+ * @param {string} input
+ * @returns {string}
+ */
+function makeAnchorId(input) {
+  // Step 1: Insert a hyphen before uppercase letters and convert the string to lowercase
+  let kebabCase = input.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+
+  // Step 2: Replace any non-lowercase letter or non-number with a dash
+  kebabCase = kebabCase.replace(/[^a-z0-9]/g, '-');
+
+  return kebabCase;
+}
+
+/**
  * Parse Android Test Report XML file
  * @param {string} xmlFile - The XML file to parse
  * @returns {XMLData}
@@ -64,7 +79,15 @@ function parseXML(xmlFile) {
   let errorTable = null;
 
   /** @type {SummaryData} */
-  let summaryData = {};
+  let summaryData = {
+    name: "N/A",
+    tests: 0,
+    skipped: 0,
+    failures: 0,
+    errors: 0,
+    timestamp: "N/A",
+    time: "0",
+  };
 
   console.log("Start parsing");
 
@@ -76,7 +99,16 @@ function parseXML(xmlFile) {
 
     for (const [dataName, dataValue] of Object.entries(attributes)) {
       if (dataName === "hostname") continue;
-      summaryData[dataName] = dataValue;
+      switch (dataName) {
+        case "tests":
+        case "skipped":
+        case "failures":
+        case "errors":
+          summaryData[dataName] = parseInt(dataValue);
+          break;
+        default:
+          summaryData[dataName] = dataValue;
+      }
     }
 
     root.testcase.forEach((elem) => {
@@ -158,24 +190,36 @@ function main(baseDir) {
   files.forEach((file) => {
     const { summary, failure } = parseXML(file);
 
+    const where = failure && failure[1][0].data;
+
     /** @type {TableRow} */
     let row = [];
     Object.entries(summary).forEach(([key, value]) => {
-      row.push({
-        data: value.toString(),
-      });
+      switch (key) {
+        case "failures":
+        case "errors":
+            row.push({
+                data: `<a href="#${makeAnchorId(where)}">${value}</a>`,
+                });
+            break;
+        default:
+          row.push({
+              data: value.toString(),
+            });
+      }
+
       switch (key) {
         case "tests":
-          summaryTotal.tests += parseInt(value);
+          summaryTotal.tests += value;
           break;
         case "skipped":
-          summaryTotal.skipped += parseInt(value);
+          summaryTotal.skipped += value;
           break;
         case "failures":
-          summaryTotal.failures += parseInt(value);
+          summaryTotal.failures += value;
           break;
         case "errors":
-          summaryTotal.errors += parseInt(value);
+          summaryTotal.errors += value;
           break;
         case "time":
           summaryTotal.time += parseFloat(value);
@@ -185,7 +229,6 @@ function main(baseDir) {
     summaryTable.push(row);
 
     if (failure) {
-      const where = failure[1][0].data;
       failures[where] = failure;
     }
   });
@@ -208,7 +251,7 @@ function main(baseDir) {
   core.summary.addTable(summaryTable);
 
   Object.entries(failures).forEach(([where, table]) => {
-    core.summary.addHeading(`Failures in <code>${where}</code>`, 2);
+    core.summary.addHeading(`Failures in <code>${where}</code> <a id="${makeAnchorId(where)}" />`, 2);
     core.summary.addTable(table);
   });
 }
