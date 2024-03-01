@@ -35,7 +35,7 @@ function parseXML(xmlFile) {
     // Parse XML
     parser.parseString(data, (err, result) => {
       if (err) throw err;
-      const root = result.testsuite[0];
+      const root = result.testsuite;
       const attributes = root.$;
 
       for (const [dataName, dataValue] of Object.entries(attributes)) {
