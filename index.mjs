@@ -35,10 +35,12 @@ function parseXML(xmlFile) {
     // Parse XML
     parser.parseString(data, (err, result) => {
       if (err) throw err;
-      const root = result.testsuites.testsuite[0];
+      const root = result.testsuite[0];
       const attributes = root.$;
 
       for (const [dataName, dataValue] of Object.entries(attributes)) {
+        if (dataName === 'hostname') continue;
+
         /** @type {TableRow} */
         let tableRow = [];
         tableRow.push({
@@ -56,7 +58,10 @@ function parseXML(xmlFile) {
       root.testcase.forEach((elem) => {
         const elemAttrib = elem.$;
         if (elem.failure) {
-          const failureMessage = elem.failure[0].$.message;
+          const failureMsg = elem.failure[0].$.message;
+          const failureType = elem.failure[0].$.type;
+          const failureStackTrace = elem.failure[0]._;
+
           hasSeenFailure = true;
 
           /** @type {TableRow} */
@@ -66,11 +71,17 @@ function parseXML(xmlFile) {
             data: elemAttrib.name,
           });
           errorRow.push({
-            data: failureMessage,
+            data: failureMsg,
           });
+          errorRow.push({
+            data: failureType,
+          })
           errorRow.push({
             data: elemAttrib.time.toString(),
           });
+          errorRow.push({
+            data: failureStackTrace,
+          })
 
           errorTable.push(errorRow);
         }
@@ -115,8 +126,8 @@ try {
   console.log(`Getting Reports In: ${baseDir}`);
 
   main(baseDir);
+
+  await core.summary.write();
 } catch (error) {
   core.setFailed(error.message);
 }
-
-await core.summary.write();
