@@ -48,25 +48,30 @@ function createFailureTable() {
 /**
  * Make an anchor ID from input string
  * @param {string} input
+ * @param {boolean} back
  * @returns {string}
  */
-function makeAnchorId(input) {
+function makeAnchorId(input, back = false) {
   // Step 1: Insert a hyphen before uppercase letters and convert the string to lowercase
   let kebabCase = input.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
   // Step 2: Replace any non-lowercase letter or non-number with a dash
   kebabCase = kebabCase.replace(/[^a-z0-9]/g, '-');
 
-  return kebabCase;
+  if (back)
+    return `back-to-${kebabCase}`
+  else
+    return kebabCase;
 }
 
 /**
  * Make a jump link from input string
  * @param {string} input
+ * @param {boolean} back
  * @returns {string}
  */
-function makeJumpLink(input) {
-  return `#user-content-${makeAnchorId(input)}`
+function makeJumpLink(input, back = true) {
+  return `#user-content-${makeAnchorId(input, back)}`
 }
 
 /**
@@ -208,7 +213,7 @@ function main(baseDir) {
         case "failures":
         case "errors":
           row.push({
-            data: (value > 0) ? `<a href="${makeJumpLink(where)}">${value}</a>` : "0",
+            data: (value > 0) ? `<a href="${makeJumpLink(where)}" id="${makeAnchorId(where, true)}">${value}</a>` : "0",
           });
           break;
         default:
@@ -260,7 +265,7 @@ function main(baseDir) {
   core.summary.addTable(summaryTable);
 
   Object.entries(failures).forEach(([where, table]) => {
-    core.summary.addHeading(`Failures in <code>${where}</code> <a id="${makeAnchorId(where)}" />`, 2);
+    core.summary.addHeading(`Failures in <code>${where}</code> <a id="${makeAnchorId(where)}" href="${makeJumpLink(where, true)}">🔗(Back)</a>`, 2);
     core.summary.addTable(table);
   });
 }
