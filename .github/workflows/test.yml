@@ -17,3 +17,4 @@ jobs:
         with:
           working-directory: "./test_data"
           show-skipped: "true"
+          report-header-postfix: "(OS: ${{ matrix.os }})"
