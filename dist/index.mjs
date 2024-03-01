@@ -33519,7 +33519,7 @@ function main(baseDir) {
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
 
   Object.entries(failures).forEach(([where, table]) => {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in ${where}`, 2);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in <code>${where}</code>`, 2);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
   });
 }

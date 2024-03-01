@@ -208,7 +208,7 @@ function main(baseDir) {
   core.summary.addTable(summaryTable);
 
   Object.entries(failures).forEach(([where, table]) => {
-    core.summary.addHeading(`Failures in ${where}`, 2);
+    core.summary.addHeading(`Failures in <code>${where}</code>`, 2);
     core.summary.addTable(table);
   });
 }
