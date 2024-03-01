@@ -118,8 +118,8 @@ try {
     console.log(`Getting Reports In: ${baseDir}`)
 
     main(baseDir);
-
-    await core.summary.write()
 } catch (error) {
   core.setFailed(error.message);
 }
+
+await core.summary.write()
