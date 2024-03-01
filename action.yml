@@ -1,5 +1,10 @@
 name: 'Android Tests Reporter'
 description: 'Reports Android Tests Results to GitHub Actions Summary'
+inputs:
+  working-directory:
+    description: 'The working directory to run the tests'
+    required: false
+    default: '.'
 runs:
   using: 'node20'
   main: 'index.js'

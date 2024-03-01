@@ -17,6 +17,8 @@ const parser = new xml2js.Parser();
  * @throws {Error} - Throws error if file is not valid XML
  */
 function parseXML(xmlFile) {
+    console.log(`Parsing: ${xmlFile}`)
+
     let hasSeenFailure = false;
 
     // Read XML file
@@ -101,6 +103,8 @@ function main(baseDir) {
             parseXML(file);
         });
 
+        console.log(`Found ${numFiles} test reports`)
+
         if (numFiles === 0) {
             core.summary.addRaw('No test reports found. Please verify the tests were executed successfully. Android Test Report Action failed the job.');
         }
@@ -109,8 +113,9 @@ function main(baseDir) {
 
 
 try {
-    const args = process.argv
-    const baseDir = args[2];
+    const baseDir = core.getInput('working-directory');
+
+    console.log(`Getting Reports In: ${baseDir}`)
 
     main(baseDir);
 
