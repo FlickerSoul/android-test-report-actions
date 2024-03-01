@@ -2,6 +2,7 @@ import core from "@actions/core";
 import fs from "fs";
 import xml2js from "xml2js";
 import { globSync } from "glob";
+import { relative } from "path";
 
 const parser = new xml2js.Parser();
 
@@ -28,8 +29,6 @@ function parseXML(xmlFile) {
 
   /** @type {Table} */
   let errorTable = [];
-
-  core.summary.addHeading(xmlFile, 2);
 
   console.log("Start parsing")
 
@@ -112,6 +111,7 @@ function main(baseDir) {
   });
 
   files.forEach((file) => {
+    core.summary.addHeading(relative(baseDir, file), 2);
     parseXML(file);
   });
 

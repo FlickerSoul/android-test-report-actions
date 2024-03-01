@@ -33309,6 +33309,8 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(7147);
 /* harmony import */ var xml2js__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(8708);
 /* harmony import */ var glob__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(9086);
+/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(1017);
+
 
 
 
@@ -33339,8 +33341,6 @@ function parseXML(xmlFile) {
 
   /** @type {Table} */
   let errorTable = [];
-
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(xmlFile, 2);
 
   console.log("Start parsing")
 
@@ -33423,6 +33423,7 @@ function main(baseDir) {
   });
 
   files.forEach((file) => {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading((0,path__WEBPACK_IMPORTED_MODULE_4__.relative)(baseDir, file), 2);
     parseXML(file);
   });
 
