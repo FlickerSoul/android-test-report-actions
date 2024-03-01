@@ -198,10 +198,12 @@ function main(baseDir) {
       switch (key) {
         case "failures":
         case "errors":
+          if (value > 0) {
             row.push({
-                data: `<a href="#${makeAnchorId(where)}">${value}</a>`,
-                });
-            break;
+              data: `<a href="#${makeAnchorId(where)}">${value}</a>`,
+            });
+          }
+          break;
         default:
           row.push({
               data: value.toString(),
