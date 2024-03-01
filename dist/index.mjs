@@ -33372,6 +33372,15 @@ function makeAnchorId(input) {
 }
 
 /**
+ * Make a jump link from input string
+ * @param {string} input
+ * @returns {string}
+ */
+function makeJumpLink(input) {
+  return `#user-content-${makeAnchorId(input)}`
+}
+
+/**
  * Parse Android Test Report XML file
  * @param {string} xmlFile - The XML file to parse
  * @returns {XMLData}
@@ -33509,11 +33518,9 @@ function main(baseDir) {
       switch (key) {
         case "failures":
         case "errors":
-          if (value > 0) {
-            row.push({
-              data: `<a href="#${makeAnchorId(where)}">${value}</a>`,
-            });
-          }
+          row.push({
+            data: (value > 0) ? `<a href="${makeJumpLink(where)}">${value}</a>` : "0",
+          });
           break;
         default:
           row.push({
