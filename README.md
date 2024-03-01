@@ -10,3 +10,9 @@ This is an GitHub Action that reports Android testing results to [Summary](https
   with:
     working-directory: "./test_data"  # default to . (current repo direction)
 ```
+
+## The Report
+
+You would see a result pop up in the Summary for each Action run.
+
+![report image](./images/report.jpg)
