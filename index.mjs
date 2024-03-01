@@ -217,7 +217,12 @@ function parseBoolean(value) {
  * @returns {void}
  */
 function main(baseDir) {
-  core.summary.addHeading("Android Test Report", 1);
+  const titlePostfix= core.getInput("report-header-postfix")
+  let title = "Android Test Report"
+  if (titlePostfix) {
+      title += ` - ${titlePostfix}`
+  }
+  core.summary.addHeading(title, 1);
 
   let files = globSync(`${baseDir}/**/TEST-*.xml`, {
     nodir: true,

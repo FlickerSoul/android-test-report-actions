@@ -33528,7 +33528,12 @@ function parseBoolean(value) {
  * @returns {void}
  */
 function main(baseDir) {
-  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Android Test Report", 1);
+  const titlePostfix= _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("report-header-postfix")
+  let title = "Android Test Report"
+  if (titlePostfix) {
+      title += ` - ${titlePostfix}`
+  }
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(title, 1);
 
   let files = (0,glob__WEBPACK_IMPORTED_MODULE_3__/* .globSync */ .Pv)(`${baseDir}/**/TEST-*.xml`, {
     nodir: true,

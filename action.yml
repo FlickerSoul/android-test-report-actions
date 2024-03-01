@@ -9,6 +9,10 @@ inputs:
     description: 'Show skipped tests in the summary'
     required: false
     default: 'false'
+  report-header-postfix:
+    description: 'The postfix to add to the report header'
+    required: false
+    default: ''
 runs:
   using: 'node20'
   main: 'dist/index.mjs'
