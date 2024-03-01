@@ -15,9 +15,15 @@ dependencies:
     version: 0.6.2
 
 devDependencies:
+  '@vercel/ncc':
+    specifier: ^0.38.1
+    version: 0.38.1
   jsdoc:
     specifier: ^4.0.2
     version: 4.0.2
+  prettier:
+    specifier: ^3.2.5
+    version: 3.2.5
 
 packages:
 
@@ -199,6 +205,11 @@ packages:
 
   /@types/mdurl@1.0.5:
     resolution: {integrity: sha512-6L6VymKTzYSrEf4Nev4Xa1LCHKrlTlYCBMTlQKFuddo1CvQcE52I0mwfOJayueUC7MJuXOeHTcIU683lzd0cUA==}
+    dev: true
+
+  /@vercel/ncc@0.38.1:
+    resolution: {integrity: sha512-IBBb+iI2NLu4VQn3Vwldyi2QwaXt5+hTyh58ggAMoCGE6DJmPvwL3KPBWcJl1m9LYPChBLE980Jw+CS4Wokqxw==}
+    hasBin: true
     dev: true
 
   /ansi-regex@5.0.1:
@@ -455,6 +466,12 @@ packages:
       lru-cache: 10.2.0
       minipass: 7.0.4
     dev: false
+
+  /prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dev: true
 
   /requizzle@0.2.4:
     resolution: {integrity: sha512-JRrFk1D4OQ4SqovXOgdav+K8EAhSB/LJZqCz8tbX0KObcdeM15Ss59ozWMBWmmINMagCwmqn4ZNryUGpBsl6Jw==}

@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "A GitHub Action to show Android test report in GitHub Actions Summary",
   "main": "index.mjs",
-  "type":"module",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "package": "ncc build index.mjs --license LICENSE",
+    "format:w": "prettier --write \"**/*.mjs\"",
+    "build": "npm run format:w && npm run package"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "jsdoc": "^4.0.2"
+    "@vercel/ncc": "^0.38.1",
+    "jsdoc": "^4.0.2",
+    "prettier": "^3.2.5"
   }
 }
