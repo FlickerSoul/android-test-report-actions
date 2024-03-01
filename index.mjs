@@ -226,7 +226,7 @@ function main(baseDir) {
   });
 
   /** @type {boolean} */
-  const recordsSkip = parseBoolean(core.getInput("skip-records"));
+  const showSkipped = parseBoolean(core.getInput("show-skipped"));
 
   /** @type {Table} */
   let summaryTable = createSummaryTable();
@@ -269,7 +269,7 @@ function main(baseDir) {
           break;
         case "skipped":
           row.push({
-            data: (recordsSkip && value > 0) ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>` : "0",
+            data: (value > 0) ? (showSkipped ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>`: value.toString()) : "0",
           });
           break;
         default:
@@ -302,7 +302,7 @@ function main(baseDir) {
       failures[where] = failure;
     }
 
-    if (recordsSkip && skip) {
+    if (showSkipped && skip) {
       skips[where] = skip;
     }
   });
@@ -330,7 +330,7 @@ function main(baseDir) {
     core.summary.addTable(table);
   });
 
-  if (recordsSkip) {
+  if (showSkipped) {
     Object.entries(skips).forEach(([where, table]) => {
         core.summary.addHeading(`Skipped in <code>${where}</code> <a id="${makeAnchorId({where, postfix: skipPostfix})}" href="${makeJumpLink({where, postfix: skipPostfix, back: true})}">🔗(Back)</a>`, 2);
         core.summary.addTable(table);

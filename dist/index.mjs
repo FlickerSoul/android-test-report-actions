@@ -33537,7 +33537,7 @@ function main(baseDir) {
   });
 
   /** @type {boolean} */
-  const recordsSkip = parseBoolean(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("skip-records"));
+  const showSkipped = parseBoolean(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("show-skipped"));
 
   /** @type {Table} */
   let summaryTable = createSummaryTable();
@@ -33580,7 +33580,7 @@ function main(baseDir) {
           break;
         case "skipped":
           row.push({
-            data: (recordsSkip && value > 0) ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>` : "0",
+            data: (value > 0) ? (showSkipped ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>`: value.toString()) : "0",
           });
           break;
         default:
@@ -33613,7 +33613,7 @@ function main(baseDir) {
       failures[where] = failure;
     }
 
-    if (recordsSkip && skip) {
+    if (showSkipped && skip) {
       skips[where] = skip;
     }
   });
@@ -33641,7 +33641,7 @@ function main(baseDir) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
   });
 
-  if (recordsSkip) {
+  if (showSkipped) {
     Object.entries(skips).forEach(([where, table]) => {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Skipped in <code>${where}</code> <a id="${makeAnchorId({where, postfix: skipPostfix})}" href="${makeJumpLink({where, postfix: skipPostfix, back: true})}">🔗(Back)</a>`, 2);
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
