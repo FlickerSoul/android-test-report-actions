@@ -33464,7 +33464,7 @@ function main(baseDir) {
   let failures = {};
 
   /** @type {SummaryTotal} */
-  let summaryTotal = SummaryTotal({
+  let summaryTotal = {
     name: "Total",
     tests: 0,
     skipped: 0,
@@ -33472,7 +33472,7 @@ function main(baseDir) {
     errors: 0,
     timestamp: "N/A",
     time: 0,
-  });
+  };
 
   files.forEach((file) => {
     const { summary, failure } = parseXML(file);
