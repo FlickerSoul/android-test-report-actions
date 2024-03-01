@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="o.s.mapnavigation.MapLocationsTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2024-02-29T22:31:44" hostname="192.168.1.129" time="0.201">
+  <properties/>
+  <testcase name="testGetPlacesNearbyForSearch" classname="o.s.mapnavigation.MapLocationsTest" time="0.167"/>
+  <testcase name="testGetPlacesForSearchText" classname="o.s.mapnavigation.MapLocationsTest" time="0.009"/>
+  <testcase name="testGetPlaceDetailsFromPlaceID" classname="o.s.mapnavigation.MapLocationsTest" time="0.007"/>
+  <testcase name="testGetPlacesNearbyForSearchWithIncludedTypes" classname="o.s.mapnavigation.MapLocationsTest" time="0.008"/>
+  <testcase name="testGetPlacesNearbyForSearchWithIncludedTypesAndPreference" classname="o.s.mapnavigation.MapLocationsTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

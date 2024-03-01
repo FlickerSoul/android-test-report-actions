@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="o.s.MainActivityTest" tests="2" failures="0" errors="0" skipped="0" time="47.855" timestamp="2024-03-01T00:16:01" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_7_API_34(AVD) - 14" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="testOnDestroy" classname="o.s.MainActivityTest" time="0.977" />
+  <testcase name="testOnCreate" classname="o.s.MainActivityTest" time="46.311" />
+</testsuite>

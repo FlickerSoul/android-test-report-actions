@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" tests="24" skipped="0" failures="0" errors="0" timestamp="2024-03-01T00:15:03" hostname="192.168.1.129" time="0.006">
+  <properties/>
+  <testcase name="testDefaultTwoRegionSelector[0: Diff: 0.0, Expected: (0, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=0.0, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.001"/>
+  <testcase name="testDefaultTwoRegionSelector[1: Diff: 22.4, Expected: (0, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=22.4, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[2: Diff: 22.5, Expected: (0, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=22.5, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.001"/>
+  <testcase name="testDefaultTwoRegionSelector[3: Diff: 337.5, Expected: (0, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=337.5, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[4: Diff: 337.6, Expected: (0, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=337.6, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.001"/>
+  <testcase name="testDefaultTwoRegionSelector[5: Diff: 22.6, Expected: (1, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=22.6, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.001"/>
+  <testcase name="testDefaultTwoRegionSelector[6: Diff: 337.4, Expected: (1, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=337.4, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[7: Diff: 180.0, Expected: (1, 1.0), Input: Location(sourceLoc=lat/lng: (0.0,0.0), userHeading=180.0, userLoc=lat/lng: (0.0,0.0))]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[8: Diff: 0.0, Expected: (0, 1.0), Input: Direction(sourceDir=102.71378268642798, userDir=102.71378268642798)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[9: Diff: 22.4, Expected: (0, 1.0), Input: Direction(sourceDir=32.198294993358964, userDir=54.59829499335896)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[10: Diff: 22.5, Expected: (0, 1.0), Input: Direction(sourceDir=311.7199346145457, userDir=334.2199346145457)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[11: Diff: 337.5, Expected: (0, 1.0), Input: Direction(sourceDir=22.328715649325588, userDir=359.8287156493256)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[12: Diff: 337.6, Expected: (0, 1.0), Input: Direction(sourceDir=1.3541210080703807, userDir=338.9541210080704)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[13: Diff: 22.6, Expected: (1, 1.0), Input: Direction(sourceDir=43.812732712933375, userDir=66.41273271293338)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[14: Diff: 337.4, Expected: (1, 1.0), Input: Direction(sourceDir=2.2131625842761222, userDir=339.6131625842761)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[15: Diff: 180.0, Expected: (1, 1.0), Input: Direction(sourceDir=41.98252134006799, userDir=221.982521340068)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[16: Diff: 0.0, Expected: (0, 1.0), Input: PinnedDirection(direction=0.0)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[17: Diff: 22.4, Expected: (0, 1.0), Input: PinnedDirection(direction=22.4)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[18: Diff: 22.5, Expected: (0, 1.0), Input: PinnedDirection(direction=22.5)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[19: Diff: 337.5, Expected: (0, 1.0), Input: PinnedDirection(direction=337.5)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[20: Diff: 337.6, Expected: (0, 1.0), Input: PinnedDirection(direction=337.6)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[21: Diff: 22.6, Expected: (1, 1.0), Input: PinnedDirection(direction=22.6)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[22: Diff: 337.4, Expected: (1, 1.0), Input: PinnedDirection(direction=337.4)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <testcase name="testDefaultTwoRegionSelector[23: Diff: 180.0, Expected: (1, 1.0), Input: PinnedDirection(direction=180.0)]" classname="o.s.audio.data.DynamicAssetTwoRegionSelectorTests" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

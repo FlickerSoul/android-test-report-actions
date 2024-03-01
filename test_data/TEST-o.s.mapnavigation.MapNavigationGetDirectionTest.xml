@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="o.s.mapnavigation.MapNavigationGetDirectionTest" tests="29" skipped="0" failures="0" errors="0" timestamp="2024-02-29T22:31:45" hostname="192.168.1.129" time="0.004">
+  <properties/>
+  <testcase name="testGetDirections[0: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (0.0,1.0E-4), Expected: 90.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.001"/>
+  <testcase name="testGetDirections[1: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (1.0E-4,1.0E-4), Expected: 45.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[2: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (1.0E-4,0.0), Expected: 0.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[3: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (1.0E-4,-1.0E-4), Expected: 315.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.001"/>
+  <testcase name="testGetDirections[4: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (0.0,-1.0E-4), Expected: 270.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[5: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (-1.0E-4,-1.0E-4), Expected: 225.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[6: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (-1.0E-4,0.0), Expected: 180.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[7: Current Location: lat/lng: (0.0,0.0), Current Heading: 0.0, Destination: lat/lng: (-1.0E-4,1.0E-4), Expected: 135.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[8: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (0.0,1.0E-4), Expected: 0.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[9: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (1.0E-4,1.0E-4), Expected: 315.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[10: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (1.0E-4,0.0), Expected: 270.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[11: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (1.0E-4,-1.0E-4), Expected: 225.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[12: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (0.0,-1.0E-4), Expected: 180.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[13: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (-1.0E-4,-1.0E-4), Expected: 135.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[14: Current Location: lat/lng: (0.0,0.0), Current Heading: 90.0, Destination: lat/lng: (-1.0E-4,0.0), Expected: 90.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[15: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (0.0,1.0E-4), Expected: 270.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[16: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (1.0E-4,1.0E-4), Expected: 225.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[17: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (1.0E-4,0.0), Expected: 180.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[18: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (1.0E-4,-1.0E-4), Expected: 135.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[19: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (0.0,-1.0E-4), Expected: 90.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[20: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (-1.0E-4,-1.0E-4), Expected: 45.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[21: Current Location: lat/lng: (0.0,0.0), Current Heading: 180.0, Destination: lat/lng: (-1.0E-4,0.0), Expected: 0.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[22: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (0.0,1.0E-4), Expected: 180.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[23: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (1.0E-4,1.0E-4), Expected: 135.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[24: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (1.0E-4,0.0), Expected: 90.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[25: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (1.0E-4,-1.0E-4), Expected: 45.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[26: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (0.0,-1.0E-4), Expected: 0.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[27: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (-1.0E-4,-1.0E-4), Expected: 315.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <testcase name="testGetDirections[28: Current Location: lat/lng: (0.0,0.0), Current Heading: 270.0, Destination: lat/lng: (-1.0E-4,0.0), Expected: 270.0]" classname="o.s.mapnavigation.MapNavigationGetDirectionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="o.s.audio.TestTTS" tests="114" failures="0" errors="0" skipped="1" time="4.025" timestamp="2024-03-01T00:16:13" hostname="localhost">
+  <properties>
+    <property name="device" value="Pixel_7_API_34(AVD) - 14" />
+    <property name="flavor" value="" />
+    <property name="project" value=":core:audio" />
+  </properties>
+  <testcase name="testTTSEngine" classname="o.s.audio.TestTTS" time="0.41" />
+  <testcase name="testSpeechBytes" classname="o.s.audio.TestTTS" time="0.115">
+    <skipped />
+  </testcase>
+  <testcase name="testChangeTrack[ChangeTrack: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.195" />
+  <testcase name="testChangeTrack[ChangeTrack: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.028" />
+  <testcase name="testChangeTrack[ChangeTrack: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.03" />
+  <testcase name="testChangeTrack[ChangeTrack: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.001" />
+  <testcase name="testChangeTrack[ChangeTrack: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.001" />
+  <testcase name="testChangeTrack[ChangeTrack: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.027" />
+  <testcase name="testChangeTrack[ChangeTrack: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.03" />
+  <testcase name="testChangeTrack[ChangeTrack: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.027" />
+  <testcase name="testChangeTrack[ChangeTrack: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.028" />
+  <testcase name="testChangeTrack[ChangeTrack: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.03" />
+  <testcase name="testChangeTrack[ChangeTrack: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.028" />
+  <testcase name="testChangeTrack[ChangeTrack: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.029" />
+  <testcase name="testChangeTrack[ChangeTrack: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.029" />
+  <testcase name="testChangeTrack[ChangeTrack: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudChangeTrack" time="0.001" />
+  <testcase name="testPauseResume[PauseResume: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.002" />
+  <testcase name="testPauseResume[PauseResume: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.029" />
+  <testcase name="testPauseResume[PauseResume: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.031" />
+  <testcase name="testPauseResume[PauseResume: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.001" />
+  <testcase name="testPauseResume[PauseResume: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.054" />
+  <testcase name="testPauseResume[PauseResume: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.029" />
+  <testcase name="testPauseResume[PauseResume: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.001" />
+  <testcase name="testPauseResume[PauseResume: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.001" />
+  <testcase name="testPauseResume[PauseResume: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.032" />
+  <testcase name="testPauseResume[PauseResume: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.029" />
+  <testcase name="testPauseResume[PauseResume: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.027" />
+  <testcase name="testPauseResume[PauseResume: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.028" />
+  <testcase name="testPauseResume[PauseResume: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.031" />
+  <testcase name="testPauseResume[PauseResume: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPauseResume" time="0.028" />
+  <testcase name="testPreparePaused[Prepare: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareCount[Prepare: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.0" />
+  <testcase name="testPrepareNotLooping[Prepare: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.032" />
+  <testcase name="testPreparePaused[Prepare: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.024" />
+  <testcase name="testPrepareCount[Prepare: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareLooping[Prepare: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareNotLooping[Prepare: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPreparePaused[Prepare: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareCount[Prepare: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.001" />
+  <testcase name="testPrepareLooping[Prepare: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareNotLooping[Prepare: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.026" />
+  <testcase name="testPreparePaused[Prepare: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareCount[Prepare: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareNotLooping[Prepare: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPreparePaused[Prepare: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.026" />
+  <testcase name="testPrepareCount[Prepare: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareNotLooping[Prepare: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPreparePaused[Prepare: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareCount[Prepare: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPrepareLooping[Prepare: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.026" />
+  <testcase name="testPrepareNotLooping[Prepare: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.056" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPreparePaused[Prepare: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareCount[Prepare: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareLooping[Prepare: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareNotLooping[Prepare: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.001" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.062" />
+  <testcase name="testPreparePaused[Prepare: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.001" />
+  <testcase name="testPrepareCount[Prepare: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareNotLooping[Prepare: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPreparePaused[Prepare: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.001" />
+  <testcase name="testPrepareCount[Prepare: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPrepareLooping[Prepare: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.054" />
+  <testcase name="testPrepareNotLooping[Prepare: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPreparePaused[Prepare: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareCount[Prepare: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareNotLooping[Prepare: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPreparePaused[Prepare: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareCount[Prepare: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPrepareNotLooping[Prepare: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.058" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPreparePaused[Prepare: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPrepareCount[Prepare: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.031" />
+  <testcase name="testPrepareLooping[Prepare: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareNotLooping[Prepare: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testPreparePaused[Prepare: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareCount[Prepare: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.054" />
+  <testcase name="testPrepareLooping[Prepare: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareNotLooping[Prepare: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.027" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPreparePaused[Prepare: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.03" />
+  <testcase name="testPrepareCount[Prepare: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.029" />
+  <testcase name="testPrepareLooping[Prepare: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.0" />
+  <testcase name="testPrepareNotLooping[Prepare: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.026" />
+  <testcase name="testPrepareAudibleIndex[Prepare: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudPrepare" time="0.028" />
+  <testcase name="testStop[Stop: 0 - BeaconAudioAssets: Classic]" classname="o.s.audio.soloud.TestSoloudStop" time="0.027" />
+  <testcase name="testStop[Stop: 1 - BeaconAudioAssets: Drop]" classname="o.s.audio.soloud.TestSoloudStop" time="0.027" />
+  <testcase name="testStop[Stop: 2 - BeaconAudioAssets: Flare]" classname="o.s.audio.soloud.TestSoloudStop" time="0.028" />
+  <testcase name="testStop[Stop: 3 - BeaconAudioAssets: Mallet]" classname="o.s.audio.soloud.TestSoloudStop" time="0.028" />
+  <testcase name="testStop[Stop: 4 - BeaconAudioAssets: SlowMallet]" classname="o.s.audio.soloud.TestSoloudStop" time="0.029" />
+  <testcase name="testStop[Stop: 5 - BeaconAudioAssets: VerySlowMallet]" classname="o.s.audio.soloud.TestSoloudStop" time="0.055" />
+  <testcase name="testStop[Stop: 6 - BeaconAudioAssets: NewCurrent]" classname="o.s.audio.soloud.TestSoloudStop" time="0.003" />
+  <testcase name="testStop[Stop: 7 - BeaconAudioAssets: Ping]" classname="o.s.audio.soloud.TestSoloudStop" time="0.028" />
+  <testcase name="testStop[Stop: 8 - BeaconAudioAssets: Shimmer]" classname="o.s.audio.soloud.TestSoloudStop" time="0.03" />
+  <testcase name="testStop[Stop: 9 - BeaconAudioAssets: Signal]" classname="o.s.audio.soloud.TestSoloudStop" time="0.027" />
+  <testcase name="testStop[Stop: 10 - BeaconAudioAssets: SlowSignal]" classname="o.s.audio.soloud.TestSoloudStop" time="0.0" />
+  <testcase name="testStop[Stop: 11 - BeaconAudioAssets: VerySlowSignal]" classname="o.s.audio.soloud.TestSoloudStop" time="0.027" />
+  <testcase name="testStop[Stop: 12 - BeaconAudioAssets: Tactile]" classname="o.s.audio.soloud.TestSoloudStop" time="0.001" />
+  <testcase name="testStop[Stop: 13 - RawAudio: [52494646c43101005741]]" classname="o.s.audio.soloud.TestSoloudStop" time="0.034" />
+</testsuite>

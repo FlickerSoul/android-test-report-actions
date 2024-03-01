@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="o.s.audio.player.BasePlayerPauseTest" tests="6" skipped="3" failures="0" errors="0" timestamp="2024-03-01T00:15:03" hostname="192.168.1.129" time="0.224">
+  <properties/>
+  <testcase name="testPauseWhenPausedOrStopped[PlayerResume: 0 - PLAYING]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.208">
+    <skipped/>
+  </testcase>
+  <testcase name="testPauseWhenPlaying[PlayerResume: 0 - PLAYING]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.004"/>
+  <testcase name="testPauseWhenPausedOrStopped[PlayerResume: 1 - PAUSED]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.003"/>
+  <testcase name="testPauseWhenPlaying[PlayerResume: 1 - PAUSED]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.005">
+    <skipped/>
+  </testcase>
+  <testcase name="testPauseWhenPausedOrStopped[PlayerResume: 2 - STOPPED]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.002"/>
+  <testcase name="testPauseWhenPlaying[PlayerResume: 2 - STOPPED]" classname="o.s.audio.player.BasePlayerPauseTest" time="0.002">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
