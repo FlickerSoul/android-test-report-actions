@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "package": "ncc build index.mjs --license LICENSE",
-    "format:w": "prettier --write \"**/*.mjs\"",
+    "format:w": "prettier --write \"index.mjs\"",
     "build": "npm run format:w && npm run package"
   },
   "repository": {
