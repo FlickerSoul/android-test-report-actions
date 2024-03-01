@@ -5,6 +5,10 @@ inputs:
     description: 'The working directory to run the tests'
     required: false
     default: '.'
+  show-skipped:
+    description: 'Show skipped tests in the summary'
+    required: false
+    default: 'false'
 runs:
   using: 'node20'
   main: 'dist/index.mjs'

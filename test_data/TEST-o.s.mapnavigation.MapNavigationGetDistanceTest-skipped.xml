@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="o.s.mapnavigation.MapNavigationGetDistanceTest" tests="1" skipped="1" failures="0" errors="0" timestamp="2024-03-01T12:10:19" hostname="192.168.1.129" time="0.0">
+  <properties/>
+  <testcase name="testGetDistance" classname="o.s.mapnavigation.MapNavigationGetDistanceTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

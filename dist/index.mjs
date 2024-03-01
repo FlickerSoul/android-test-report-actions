@@ -33319,7 +33319,7 @@ const parser = new xml2js__WEBPACK_IMPORTED_MODULE_2__.Parser();
 /** @typedef {import('@actions/core/lib/summary').SummaryTableRow} TableRow*/
 /** @typedef {TableRow[]} Table*/
 /** @typedef {name: string, tests: number, skipped: number, failures: number, errors: number, timestamp: string, time: string} SummaryData */
-/** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
+/** @typedef {{summary: SummaryData, failure: Table?, skip: Table? }} XMLData*/
 /** @typedef {name: 'Total', tests: number, skipped: number, failures: number, errors: number, timestamp: 'N/A', time: number} SummaryTotal*/
 
 /**
@@ -33356,18 +33356,33 @@ function createFailureTable() {
   ];
 }
 
+function createSkippedTable() {
+    return [
+      [
+        { data: "💾 Test Name", header: true },
+        { data: "🏛️ Class Name", header: true },
+        { data: "⌛️ Time (s)", header: true },
+      ],
+    ];
+}
+
+/** @typedef {{where: string, postfix: string?, back: boolean?}} AnchorOptions*/
+
 /**
  * Make an anchor ID from input string
- * @param {string} input
- * @param {boolean} back
+ * @param {AnchorOptions} options
  * @returns {string}
  */
-function makeAnchorId(input, back = false) {
+function makeAnchorId(options) {
+  const {where, postfix= "", back = false} = options
   // Step 1: Insert a hyphen before uppercase letters and convert the string to lowercase
-  let kebabCase = input.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+  let kebabCase = where.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 
   // Step 2: Replace any non-lowercase letter or non-number with a dash
   kebabCase = kebabCase.replace(/[^a-z0-9]/g, '-');
+
+  if (postfix)
+    kebabCase = `${kebabCase}-${postfix}`
 
   if (back)
     return `back-to-${kebabCase}`
@@ -33377,12 +33392,11 @@ function makeAnchorId(input, back = false) {
 
 /**
  * Make a jump link from input string
- * @param {string} input
- * @param {boolean} back
+ * @param {AnchorOptions} options
  * @returns {string}
  */
-function makeJumpLink(input, back = true) {
-  return `#user-content-${makeAnchorId(input, back)}`
+function makeJumpLink(options) {
+  return `#user-content-${makeAnchorId(options)}`
 }
 
 /**
@@ -33402,6 +33416,9 @@ function parseXML(xmlFile) {
 
   /** @type {Table | null} */
   let errorTable = null;
+
+  /** @type {Table | null} */
+  let skippedTable = null;
 
   /** @type {SummaryData} */
   let summaryData = {
@@ -33437,7 +33454,8 @@ function parseXML(xmlFile) {
     }
 
     root.testcase.forEach((elem) => {
-      const elemAttrib = elem.$;
+      const attributes = elem.$;
+
       if (elem.failure) {
         if (!errorTable) {
           errorTable = createFailureTable();
@@ -33453,7 +33471,7 @@ function parseXML(xmlFile) {
         let errorRow = [];
 
         errorRow.push({
-          data: elemAttrib.name,
+          data: attributes.name,
         });
         errorRow.push({
           data: failureMsg,
@@ -33462,13 +33480,26 @@ function parseXML(xmlFile) {
           data: failureType,
         });
         errorRow.push({
-          data: elemAttrib.time.toString(),
+          data: attributes.time.toString(),
         });
         errorRow.push({
           data: failureStackTrace,
         });
 
         errorTable.push(errorRow);
+      }
+
+      if (elem.skipped) {
+        if (skippedTable === null) {
+            skippedTable = createSkippedTable();
+        }
+
+        /** @type {TableRow} */
+        let skipRow = []
+
+        Object.entries(attributes).forEach(([key, value]) => {
+          skipRow.push({ data: value.toString() });
+        });
       }
     });
   });
@@ -33478,7 +33509,17 @@ function parseXML(xmlFile) {
   return {
     summary: summaryData,
     failure: errorTable,
+    skip: skippedTable,
   };
+}
+
+/**
+ * Parse a string into a boolean
+ * @param {string} value
+ * @returns {boolean}
+ */
+function parseBoolean(value) {
+  return value === "true";
 }
 
 /**
@@ -33495,11 +33536,21 @@ function main(baseDir) {
     withFileTypes: false,
   });
 
+  /** @type {boolean} */
+  const recordsSkip = parseBoolean(_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("skip-records"));
+
   /** @type {Table} */
   let summaryTable = createSummaryTable();
 
   /** @type {{string: Table}} */
   let failures = {};
+
+  const failurePostfix = "failures";
+
+  /** @type {{string: Table}} */
+  let skips = {};
+
+  const skipPostfix = "skipped";
 
   /** @type {SummaryTotal} */
   let summaryTotal = {
@@ -33513,7 +33564,7 @@ function main(baseDir) {
   };
 
   files.forEach((file) => {
-    const { summary, failure } = parseXML(file);
+    const { summary, failure, skip } = parseXML(file);
 
     const where = failure && failure[1][0].data;
 
@@ -33524,7 +33575,12 @@ function main(baseDir) {
         case "failures":
         case "errors":
           row.push({
-            data: (value > 0) ? `<a href="${makeJumpLink(where)}" id="${makeAnchorId(where, true)}">${value}</a>` : "0",
+            data: (value > 0) ? `<a href="${makeJumpLink({where, postfix: failurePostfix})}" id="${makeAnchorId({where, postfix: failurePostfix, back: true})}">${value}</a>` : "0",
+          });
+          break;
+        case "skipped":
+          row.push({
+            data: (recordsSkip && value > 0) ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>` : "0",
           });
           break;
         default:
@@ -33556,6 +33612,10 @@ function main(baseDir) {
     if (failure) {
       failures[where] = failure;
     }
+
+    if (recordsSkip && skip) {
+      skips[where] = skip;
+    }
   });
 
   if (files.length === 0) {
@@ -33575,10 +33635,18 @@ function main(baseDir) {
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Summary", 2);
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
 
+
   Object.entries(failures).forEach(([where, table]) => {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in <code>${where}</code> <a id="${makeAnchorId(where)}" href="${makeJumpLink(where, true)}">🔗(Back)</a>`, 2);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in <code>${where}</code> <a id="${makeAnchorId({where, postfix: failurePostfix})}" href="${makeJumpLink({where, postfix: failurePostfix, back: true})}">🔗(Back)</a>`, 2);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
   });
+
+  if (recordsSkip) {
+    Object.entries(skips).forEach(([where, table]) => {
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Skipped in <code>${where}</code> <a id="${makeAnchorId({where, postfix: skipPostfix})}" href="${makeJumpLink({where, postfix: skipPostfix, back: true})}">🔗(Back)</a>`, 2);
+        _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
+    });
+  }
 }
 
 try {
