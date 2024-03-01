@@ -189,6 +189,7 @@ function parseXML(xmlFile) {
         Object.entries(attributes).forEach(([key, value]) => {
           skipRow.push({ data: value.toString() });
         });
+        skippedTable.push(skipRow);
       }
     });
   });
