@@ -33332,82 +33332,80 @@ function parseXML(xmlFile) {
   let hasSeenFailure = false;
 
   // Read XML file
-  fs__WEBPACK_IMPORTED_MODULE_1__.readFile(xmlFile, (err, data) => {
+  const data = fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync(xmlFile)
+
+  /** @type {Table} */
+  let summaryTable = [];
+
+  /** @type {Table} */
+  let errorTable = [];
+
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(xmlFile, 2);
+
+  console.log("Start parsing")
+
+  // Parse XML
+  parser.parseString(data, (err, result) => {
     if (err) throw err;
+    const root = result.testsuite;
+    const attributes = root.$;
 
-    /** @type {Table} */
-    let summaryTable = [];
+    for (const [dataName, dataValue] of Object.entries(attributes)) {
+      if (dataName === 'hostname') continue;
 
-    /** @type {Table} */
-    let errorTable = [];
-
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(xmlFile, 2);
-
-    console.log("Start parsing")
-
-    // Parse XML
-    parser.parseString(data, (err, result) => {
-      if (err) throw err;
-      const root = result.testsuite;
-      const attributes = root.$;
-
-      for (const [dataName, dataValue] of Object.entries(attributes)) {
-        if (dataName === 'hostname') continue;
-
-        /** @type {TableRow} */
-        let tableRow = [];
-        tableRow.push({
-          data: dataName,
-        });
-        tableRow.push({
-          data: dataValue.toString(),
-        });
-
-        summaryTable.push(tableRow);
-      }
-
-      _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
-
-      root.testcase.forEach((elem) => {
-        const elemAttrib = elem.$;
-        if (elem.failure) {
-          const failureMsg = elem.failure[0].$.message;
-          const failureType = elem.failure[0].$.type;
-          const failureStackTrace = elem.failure[0]._;
-
-          hasSeenFailure = true;
-
-          /** @type {TableRow} */
-          let errorRow = [];
-
-          errorRow.push({
-            data: elemAttrib.name,
-          });
-          errorRow.push({
-            data: failureMsg,
-          });
-          errorRow.push({
-            data: failureType,
-          })
-          errorRow.push({
-            data: elemAttrib.time.toString(),
-          });
-          errorRow.push({
-            data: failureStackTrace,
-          })
-
-          errorTable.push(errorRow);
-        }
+      /** @type {TableRow} */
+      let tableRow = [];
+      tableRow.push({
+        data: dataName,
+      });
+      tableRow.push({
+        data: dataValue.toString(),
       });
 
-      if (hasSeenFailure) {
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Failures", 3);
-        _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(errorTable);
-      }
+      summaryTable.push(tableRow);
+    }
 
-      console.log("End parsing")
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
+
+    root.testcase.forEach((elem) => {
+      const elemAttrib = elem.$;
+      if (elem.failure) {
+        const failureMsg = elem.failure[0].$.message;
+        const failureType = elem.failure[0].$.type;
+        const failureStackTrace = elem.failure[0]._;
+
+        hasSeenFailure = true;
+
+        /** @type {TableRow} */
+        let errorRow = [];
+
+        errorRow.push({
+          data: elemAttrib.name,
+        });
+        errorRow.push({
+          data: failureMsg,
+        });
+        errorRow.push({
+          data: failureType,
+        })
+        errorRow.push({
+          data: elemAttrib.time.toString(),
+        });
+        errorRow.push({
+          data: failureStackTrace,
+        })
+
+        errorTable.push(errorRow);
+      }
     });
+
+    if (hasSeenFailure) {
+      _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Failures", 3);
+      _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(errorTable);
+    }
   });
+
+  console.log("End parsing")
 }
 
 /**

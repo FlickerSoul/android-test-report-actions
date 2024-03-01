@@ -21,82 +21,80 @@ function parseXML(xmlFile) {
   let hasSeenFailure = false;
 
   // Read XML file
-  fs.readFile(xmlFile, (err, data) => {
+  const data = fs.readFileSync(xmlFile)
+
+  /** @type {Table} */
+  let summaryTable = [];
+
+  /** @type {Table} */
+  let errorTable = [];
+
+  core.summary.addHeading(xmlFile, 2);
+
+  console.log("Start parsing")
+
+  // Parse XML
+  parser.parseString(data, (err, result) => {
     if (err) throw err;
+    const root = result.testsuite;
+    const attributes = root.$;
 
-    /** @type {Table} */
-    let summaryTable = [];
+    for (const [dataName, dataValue] of Object.entries(attributes)) {
+      if (dataName === 'hostname') continue;
 
-    /** @type {Table} */
-    let errorTable = [];
-
-    core.summary.addHeading(xmlFile, 2);
-
-    console.log("Start parsing")
-
-    // Parse XML
-    parser.parseString(data, (err, result) => {
-      if (err) throw err;
-      const root = result.testsuite;
-      const attributes = root.$;
-
-      for (const [dataName, dataValue] of Object.entries(attributes)) {
-        if (dataName === 'hostname') continue;
-
-        /** @type {TableRow} */
-        let tableRow = [];
-        tableRow.push({
-          data: dataName,
-        });
-        tableRow.push({
-          data: dataValue.toString(),
-        });
-
-        summaryTable.push(tableRow);
-      }
-
-      core.summary.addTable(summaryTable);
-
-      root.testcase.forEach((elem) => {
-        const elemAttrib = elem.$;
-        if (elem.failure) {
-          const failureMsg = elem.failure[0].$.message;
-          const failureType = elem.failure[0].$.type;
-          const failureStackTrace = elem.failure[0]._;
-
-          hasSeenFailure = true;
-
-          /** @type {TableRow} */
-          let errorRow = [];
-
-          errorRow.push({
-            data: elemAttrib.name,
-          });
-          errorRow.push({
-            data: failureMsg,
-          });
-          errorRow.push({
-            data: failureType,
-          })
-          errorRow.push({
-            data: elemAttrib.time.toString(),
-          });
-          errorRow.push({
-            data: failureStackTrace,
-          })
-
-          errorTable.push(errorRow);
-        }
+      /** @type {TableRow} */
+      let tableRow = [];
+      tableRow.push({
+        data: dataName,
+      });
+      tableRow.push({
+        data: dataValue.toString(),
       });
 
-      if (hasSeenFailure) {
-        core.summary.addHeading("Failures", 3);
-        core.summary.addTable(errorTable);
-      }
+      summaryTable.push(tableRow);
+    }
 
-      console.log("End parsing")
+    core.summary.addTable(summaryTable);
+
+    root.testcase.forEach((elem) => {
+      const elemAttrib = elem.$;
+      if (elem.failure) {
+        const failureMsg = elem.failure[0].$.message;
+        const failureType = elem.failure[0].$.type;
+        const failureStackTrace = elem.failure[0]._;
+
+        hasSeenFailure = true;
+
+        /** @type {TableRow} */
+        let errorRow = [];
+
+        errorRow.push({
+          data: elemAttrib.name,
+        });
+        errorRow.push({
+          data: failureMsg,
+        });
+        errorRow.push({
+          data: failureType,
+        })
+        errorRow.push({
+          data: elemAttrib.time.toString(),
+        });
+        errorRow.push({
+          data: failureStackTrace,
+        })
+
+        errorTable.push(errorRow);
+      }
     });
+
+    if (hasSeenFailure) {
+      core.summary.addHeading("Failures", 3);
+      core.summary.addTable(errorTable);
+    }
   });
+
+  console.log("End parsing")
 }
 
 /**
