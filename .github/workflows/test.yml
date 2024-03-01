@@ -9,7 +9,7 @@ jobs:
       # you must check out the repository
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Hello world action step
+      - name: Test
         uses: ./ # Uses an action in the root directory
         with:
           working-directory: "./test_data"
