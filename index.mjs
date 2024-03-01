@@ -1,7 +1,7 @@
 import core from '@actions/core';
 import fs from 'fs';
 import xml2js from 'xml2js';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 const parser = new xml2js.Parser();
 
@@ -94,7 +94,7 @@ function main(baseDir) {
 
     core.summary.addHeading('Android Test Report', 1)
 
-    glob.globSync(`${baseDir}/**/TEST-*.xml`, { nodir: true, absolute: true, withFileTypes: false }, (err, files) => {
+    globSync(`${baseDir}/**/TEST-*.xml`, { nodir: true, absolute: true, withFileTypes: false }, (err, files) => {
         if (err) throw err;
 
         files.forEach(file => {
