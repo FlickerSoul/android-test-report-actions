@@ -33343,6 +33343,8 @@ function parseXML(xmlFile) {
 
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(xmlFile, 2);
 
+    console.log("Start parsing")
+
     // Parse XML
     parser.parseString(data, (err, result) => {
       if (err) throw err;
@@ -33402,6 +33404,8 @@ function parseXML(xmlFile) {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Failures", 3);
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(errorTable);
       }
+
+      console.log("End parsing")
     });
   });
 }

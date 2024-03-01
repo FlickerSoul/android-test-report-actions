@@ -32,6 +32,8 @@ function parseXML(xmlFile) {
 
     core.summary.addHeading(xmlFile, 2);
 
+    console.log("Start parsing")
+
     // Parse XML
     parser.parseString(data, (err, result) => {
       if (err) throw err;
@@ -91,6 +93,8 @@ function parseXML(xmlFile) {
         core.summary.addHeading("Failures", 3);
         core.summary.addTable(errorTable);
       }
+
+      console.log("End parsing")
     });
   });
 }
