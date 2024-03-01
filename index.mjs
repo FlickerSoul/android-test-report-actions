@@ -7,7 +7,7 @@ const parser = new xml2js.Parser();
 
 /** @typedef {import('@actions/core/lib/summary').SummaryTableRow} TableRow*/
 /** @typedef {TableRow[]} Table*/
-/** @typedef {name: string, tests: number, skipped: number, failures: number, errors: number, timestamp: string, time: string} SummaryData */
+/** @typedef {name: string, tests: string, skipped: string, failures: string, errors: string, timestamp: string, time: string} SummaryData */
 /** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
 /** @typedef {name: 'Total', tests: number, skipped: number, failures: number, errors: number, timestamp: 'N/A', time: number} SummaryTotal*/
 
@@ -64,15 +64,7 @@ function parseXML(xmlFile) {
   let errorTable = null;
 
   /** @type {SummaryData} */
-  let summaryData = {
-    name: "",
-    tests: 0,
-    skipped: 0,
-    failures: 0,
-    errors: 0,
-    timestamp: "",
-    time: "",
-  };
+  let summaryData = {};
 
   console.log("Start parsing");
 
@@ -174,16 +166,16 @@ function main(baseDir) {
       });
       switch (key) {
         case "tests":
-          summaryTotal.tests += value;
+          summaryTotal.tests += parseInt(value);
           break;
         case "skipped":
-          summaryTotal.skipped += value;
+          summaryTotal.skipped += parseInt(value);
           break;
         case "failures":
-          summaryTotal.failures += value;
+          summaryTotal.failures += parseInt(value);
           break;
         case "errors":
-          summaryTotal.errors += value;
+          summaryTotal.errors += parseInt(value);
           break;
         case "time":
           summaryTotal.time += parseFloat(value);
