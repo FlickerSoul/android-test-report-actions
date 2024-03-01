@@ -33427,13 +33427,13 @@ function main(baseDir) {
   /** @type {Table} */
   let summaryTable = [];
   summaryTable.push([
-    { data: "Name" },
-    { data: "Tests" },
-    { data: "Skipped" },
-    { data: "Failures" },
-    { data: "Errors" },
-    { data: "Timestamp" },
-    { data: "Time" },
+    { data: "Name", header: true},
+    { data: "Tests", header: true },
+    { data: "Skipped", header: true },
+    { data: "Failures", header: true },
+    { data: "Errors", header: true },
+    { data: "Timestamp", header: true },
+    { data: "Time", header: true },
   ])
 
   /** @type {{string: Table}} */
