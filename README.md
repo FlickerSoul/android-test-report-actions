@@ -6,7 +6,7 @@ This is an GitHub Action that reports Android testing results to [Summary](https
 
 ```yaml
 - name: Report
-  uses: FlickerSoul/android-test-report-actions
+  uses: FlickerSoul/android-test-report-actions@v1
   with:
     working-directory: "./test_data"  # default to . (current repo direction)
 ```
