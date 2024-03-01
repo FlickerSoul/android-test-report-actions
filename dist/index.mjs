@@ -33320,11 +33320,13 @@ const parser = new xml2js__WEBPACK_IMPORTED_MODULE_2__.Parser();
 
 /** @typedef {import('@actions/core/lib/summary').SummaryTableRow} TableRow*/
 /** @typedef {TableRow[]} Table*/
+/** @typedef {name: string, tests: number, skipped: number, failures: number, timestamp: string, time: string} SummaryData */
+/** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
 
 /**
  * Parse Android Test Report XML file
  * @param {string} xmlFile - The XML file to parse
- * @returns {void}
+ * @returns {XMLData}
  * @throws {Error} - Throws error if file is not found
  * @throws {Error} - Throws error if file is not valid XML
  */
@@ -33336,11 +33338,18 @@ function parseXML(xmlFile) {
   // Read XML file
   const data = fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync(xmlFile)
 
-  /** @type {Table} */
-  let summaryTable = [];
+  /** @type {Table | null} */
+  let errorTable = null;
 
-  /** @type {Table} */
-  let errorTable = [];
+  /** @type {SummaryData} */
+  let summaryData = {
+    name: "",
+    tests: 0,
+    skipped: 0,
+    failures: 0,
+    timestamp: "",
+    time: "",
+  }
 
   console.log("Start parsing")
 
@@ -33352,24 +33361,16 @@ function parseXML(xmlFile) {
 
     for (const [dataName, dataValue] of Object.entries(attributes)) {
       if (dataName === 'hostname') continue;
-
-      /** @type {TableRow} */
-      let tableRow = [];
-      tableRow.push({
-        data: dataName,
-      });
-      tableRow.push({
-        data: dataValue.toString(),
-      });
-
-      summaryTable.push(tableRow);
+      summaryData[dataName] = dataValue;
     }
-
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
 
     root.testcase.forEach((elem) => {
       const elemAttrib = elem.$;
       if (elem.failure) {
+        if (!errorTable) {
+          errorTable = [];
+        }
+
         const failureMsg = elem.failure[0].$.message;
         const failureType = elem.failure[0].$.type;
         const failureStackTrace = elem.failure[0]._;
@@ -33406,6 +33407,11 @@ function parseXML(xmlFile) {
   });
 
   console.log("End parsing")
+
+  return {
+    summary: summaryData,
+    failure: errorTable,
+  };
 }
 
 /**
@@ -33422,9 +33428,26 @@ function main(baseDir) {
     withFileTypes: false,
   });
 
+  /** @type {Table} */
+  let summaryTable = [];
+  /** @type {{string: Table}} */
+  let failures = {};
+
   files.forEach((file) => {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading((0,path__WEBPACK_IMPORTED_MODULE_4__.relative)(baseDir, file), 2);
-    parseXML(file);
+    const {summary, failure} = parseXML(file);
+
+    /** @type {TableRow} */
+    let row = [];
+    Object.entries(summary).forEach(([key, value]) => {
+      row.push({
+          data: value.toString(),
+      });
+    });
+    summaryTable.push(row);
+
+    if (failure) {
+      failures[(0,path__WEBPACK_IMPORTED_MODULE_4__.relative)(baseDir, file)] = failure;
+    }
   });
 
   if (files.length === 0) {
@@ -33432,6 +33455,14 @@ function main(baseDir) {
       "No test reports found. Please verify the tests were executed successfully. Android Test Report Action failed the job.",
     );
   }
+
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Summary", 2);
+  _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
+
+  Object.entries(failures).forEach(([file, table]) => {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in ${file}`, 2);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
+  });
 }
 
 try {
