@@ -185,7 +185,7 @@ function main(baseDir) {
     summaryTable.push(row);
 
     if (failure) {
-      const where = failure[0][0].data;
+      const where = failure[1][0].data;
       failures[where] = failure;
     }
   });
