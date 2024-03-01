@@ -90,30 +90,23 @@ function parseXML(xmlFile) {
  * @returns {void}
  */
 function main(baseDir) {
-  let numFiles = 0;
-
   core.summary.addHeading("Android Test Report", 1);
 
-  globSync(
-    `${baseDir}/**/TEST-*.xml`,
-    { nodir: true, absolute: true, withFileTypes: false },
-    (err, files) => {
-      if (err) throw err;
+  let files = globSync(`${baseDir}/**/TEST-*.xml`, {
+    nodir: true,
+    absolute: true,
+    withFileTypes: false,
+  });
 
-      files.forEach((file) => {
-        numFiles += 1;
-        parseXML(file);
-      });
+  files.forEach((file) => {
+    parseXML(file);
+  });
 
-      console.log(`Found ${numFiles} test reports`);
-
-      if (numFiles === 0) {
-        core.summary.addRaw(
-          "No test reports found. Please verify the tests were executed successfully. Android Test Report Action failed the job.",
-        );
-      }
-    },
-  );
+  if (files.length === 0) {
+    core.summary.addRaw(
+      "No test reports found. Please verify the tests were executed successfully. Android Test Report Action failed the job.",
+    );
+  }
 }
 
 try {
