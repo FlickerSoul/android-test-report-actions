@@ -255,7 +255,8 @@ function main(baseDir) {
   files.forEach((file) => {
     const { summary, failure, skip } = parseXML(file);
 
-    const where = failure && failure[1][0].data;
+    const failureWhere = failure && failure[1][0].data;
+    const skipWhere = skip && skip[1][0].data;
 
     /** @type {TableRow} */
     let row = [];
@@ -264,12 +265,12 @@ function main(baseDir) {
         case "failures":
         case "errors":
           row.push({
-            data: (value > 0) ? `<a href="${makeJumpLink({where, postfix: failurePostfix})}" id="${makeAnchorId({where, postfix: failurePostfix, back: true})}">${value}</a>` : "0",
+            data: (value > 0) ? `<a href="${makeJumpLink({where: failureWhere, postfix: failurePostfix})}" id="${makeAnchorId({where: failureWhere, postfix: failurePostfix, back: true})}">${value}</a>` : "0",
           });
           break;
         case "skipped":
           row.push({
-            data: (value > 0) ? (showSkipped ? `<a href="${makeJumpLink({where, postfix: skipPostfix})}" id="${makeAnchorId({where, postfix: skipPostfix, back: true})}">${value}</a>`: value.toString()) : "0",
+            data: (value > 0) ? (showSkipped ? `<a href="${makeJumpLink({where: skipWhere, postfix: skipPostfix})}" id="${makeAnchorId({where: skipWhere, postfix: skipPostfix, back: true})}">${value}</a>`: value.toString()) : "0",
           });
           break;
         default:
@@ -299,11 +300,11 @@ function main(baseDir) {
     summaryTable.push(row);
 
     if (failure) {
-      failures[where] = failure;
+      failures[failureWhere] = failure;
     }
 
     if (showSkipped && skip) {
-      skips[where] = skip;
+      skips[skipWhere] = skip;
     }
   });
 
