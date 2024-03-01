@@ -33531,7 +33531,7 @@ function parseBoolean(value) {
 function main(baseDir) {
   const titlePostfix= _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("report-header-postfix")
   let title = "Android Test Report"
-  if (titlePostfix) {
+  if (titlePostfix.length > 0) {
       title += ` - ${titlePostfix}`
   }
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(title, 1);

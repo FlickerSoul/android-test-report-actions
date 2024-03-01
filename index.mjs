@@ -220,7 +220,7 @@ function parseBoolean(value) {
 function main(baseDir) {
   const titlePostfix= core.getInput("report-header-postfix")
   let title = "Android Test Report"
-  if (titlePostfix) {
+  if (titlePostfix.length > 0) {
       title += ` - ${titlePostfix}`
   }
   core.summary.addHeading(title, 1);
