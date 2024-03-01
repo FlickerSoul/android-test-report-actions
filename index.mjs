@@ -8,7 +8,7 @@ const parser = new xml2js.Parser();
 
 /** @typedef {import('@actions/core/lib/summary').SummaryTableRow} TableRow*/
 /** @typedef {TableRow[]} Table*/
-/** @typedef {name: string, tests: number, skipped: number, failures: number, timestamp: string, time: string} SummaryData */
+/** @typedef {name: string, tests: number, skipped: number, failures: number, errors: number, timestamp: string, time: string} SummaryData */
 /** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
 
 /**
@@ -35,6 +35,7 @@ function parseXML(xmlFile) {
     tests: 0,
     skipped: 0,
     failures: 0,
+    errors: 0,
     timestamp: "",
     time: "",
   }
@@ -87,11 +88,6 @@ function parseXML(xmlFile) {
         errorTable.push(errorRow);
       }
     });
-
-    if (hasSeenFailure) {
-      core.summary.addHeading("Failures", 3);
-      core.summary.addTable(errorTable);
-    }
   });
 
   console.log("End parsing")
@@ -118,6 +114,16 @@ function main(baseDir) {
 
   /** @type {Table} */
   let summaryTable = [];
+  summaryTable.push([
+    { data: "Name" },
+    { data: "Tests" },
+    { data: "Skipped" },
+    { data: "Failures" },
+    { data: "Errors" },
+    { data: "Timestamp" },
+    { data: "Time" },
+  ])
+
   /** @type {{string: Table}} */
   let failures = {};
 
