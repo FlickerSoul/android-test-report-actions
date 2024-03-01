@@ -2,7 +2,10 @@ on: [push]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "macos-latest"]
+    runs-on: ${{ matrix.os }}
     name: Test Report Action
     steps:
       # To use this repository's private action,
@@ -13,3 +16,4 @@ jobs:
         uses: ./ # Uses an action in the root directory
         with:
           working-directory: "./test_data"
+          show-skipped: "true"
