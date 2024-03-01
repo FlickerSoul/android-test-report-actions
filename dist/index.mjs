@@ -33309,8 +33309,6 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(7147);
 /* harmony import */ var xml2js__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(8708);
 /* harmony import */ var glob__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(9086);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(1017);
-
 
 
 
@@ -33322,6 +33320,41 @@ const parser = new xml2js__WEBPACK_IMPORTED_MODULE_2__.Parser();
 /** @typedef {TableRow[]} Table*/
 /** @typedef {name: string, tests: number, skipped: number, failures: number, errors: number, timestamp: string, time: string} SummaryData */
 /** @typedef {{summary: SummaryData, failure: Table?, }} XMLData*/
+/** @typedef {name: 'Total', tests: number, skipped: number, failures: number, errors: number, timestamp: 'N/A', time: number} SummaryTotal*/
+
+/**
+ * Returns a new summary table with headers
+ * @returns {Table}
+ */
+function createSummaryTable() {
+  return [
+    [
+      { data: "💾Name", header: true },
+      { data: "📋Tests", header: true },
+      { data: "↩️Skipped", header: true },
+      { data: "‼️Failures", header: true },
+      { data: "❌Errors", header: true },
+      { data: "⌚Timestamp", header: true },
+      { data: "⌛Time (s)", header: true },
+    ],
+  ];
+}
+
+/**
+ * Returns a new failure table with headers
+ * @returns {Table}
+ */
+function createFailureTable() {
+  return [
+    [
+      { data: "💾Test Name", header: true },
+      { data: "💬Failure Message", header: true },
+      { data: "⁉️Failure Type", header: true },
+      { data: "⌛️Time (s)", header: true },
+      { data: "🤔Stack Trace", header: true },
+    ],
+  ];
+}
 
 /**
  * Parse Android Test Report XML file
@@ -33336,7 +33369,7 @@ function parseXML(xmlFile) {
   let hasSeenFailure = false;
 
   // Read XML file
-  const data = fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync(xmlFile)
+  const data = fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync(xmlFile);
 
   /** @type {Table | null} */
   let errorTable = null;
@@ -33350,9 +33383,9 @@ function parseXML(xmlFile) {
     errors: 0,
     timestamp: "",
     time: "",
-  }
+  };
 
-  console.log("Start parsing")
+  console.log("Start parsing");
 
   // Parse XML
   parser.parseString(data, (err, result) => {
@@ -33361,7 +33394,7 @@ function parseXML(xmlFile) {
     const attributes = root.$;
 
     for (const [dataName, dataValue] of Object.entries(attributes)) {
-      if (dataName === 'hostname') continue;
+      if (dataName === "hostname") continue;
       summaryData[dataName] = dataValue;
     }
 
@@ -33369,7 +33402,7 @@ function parseXML(xmlFile) {
       const elemAttrib = elem.$;
       if (elem.failure) {
         if (!errorTable) {
-          errorTable = [];
+          errorTable = createFailureTable();
         }
 
         const failureMsg = elem.failure[0].$.message;
@@ -33389,20 +33422,20 @@ function parseXML(xmlFile) {
         });
         errorRow.push({
           data: failureType,
-        })
+        });
         errorRow.push({
           data: elemAttrib.time.toString(),
         });
         errorRow.push({
           data: failureStackTrace,
-        })
+        });
 
         errorTable.push(errorRow);
       }
     });
   });
 
-  console.log("End parsing")
+  console.log("End parsing");
 
   return {
     summary: summaryData,
@@ -33425,34 +33458,54 @@ function main(baseDir) {
   });
 
   /** @type {Table} */
-  let summaryTable = [];
-  summaryTable.push([
-    { data: "Name", header: true},
-    { data: "Tests", header: true },
-    { data: "Skipped", header: true },
-    { data: "Failures", header: true },
-    { data: "Errors", header: true },
-    { data: "Timestamp", header: true },
-    { data: "Time", header: true },
-  ])
+  let summaryTable = createSummaryTable();
 
   /** @type {{string: Table}} */
   let failures = {};
 
+  /** @type {SummaryTotal} */
+  let summaryTotal = SummaryTotal({
+    name: "Total",
+    tests: 0,
+    skipped: 0,
+    failures: 0,
+    errors: 0,
+    timestamp: "N/A",
+    time: 0,
+  });
+
   files.forEach((file) => {
-    const {summary, failure} = parseXML(file);
+    const { summary, failure } = parseXML(file);
 
     /** @type {TableRow} */
     let row = [];
     Object.entries(summary).forEach(([key, value]) => {
       row.push({
-          data: value.toString(),
+        data: value.toString(),
       });
+      switch (key) {
+        case "tests":
+          summaryTotal.tests += value;
+          break;
+        case "skipped":
+          summaryTotal.skipped += value;
+          break;
+        case "failures":
+          summaryTotal.failures += value;
+          break;
+        case "errors":
+          summaryTotal.errors += value;
+          break;
+        case "time":
+          summaryTotal.time += parseFloat(value);
+          break;
+      }
     });
     summaryTable.push(row);
 
     if (failure) {
-      failures[(0,path__WEBPACK_IMPORTED_MODULE_4__.relative)(baseDir, file)] = failure;
+      const where = failure[0][0].data;
+      failures[where] = failure;
     }
   });
 
@@ -33462,11 +33515,19 @@ function main(baseDir) {
     );
   }
 
+  let totalRow = [];
+  Object.entries(summaryTotal).forEach(([key, value]) => {
+    totalRow.push({
+      data: value.toString(),
+    });
+  });
+  summaryTable.push(totalRow);
+
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading("Summary", 2);
   _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(summaryTable);
 
-  Object.entries(failures).forEach(([file, table]) => {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in ${file}`, 2);
+  Object.entries(failures).forEach(([where, table]) => {
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addHeading(`Failures in ${where}`, 2);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.summary.addTable(table);
   });
 }
